@@ -26,6 +26,11 @@ venv/
 ENV/
 env/
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
 # IDE
 .vscode/
 .idea/
@@ -46,4 +51,3 @@ sandstone/output/
 ~$*
 ~$*.docx
 ~$*.xlsx
-
