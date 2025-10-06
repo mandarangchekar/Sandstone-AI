@@ -50,11 +50,13 @@ TASK:
 3. Set has_issue=True ONLY if there are red flag issues
 4. If red flags exist, extract the specific problematic text snippet (exact quote)
 5. Explain clearly what the red flag is and why it matters
-6. Generate a concise, clear suggested fix that addresses the specific red flag found
+6. Generate a comprehensive suggested fix that addresses the specific red flag found
    - Base it on the ideal characteristics provided
+   - Include ALL key components from the ideal clause (e.g., for Recipient's Obligations, ensure you include: confidentiality, limited use, access control, breach notification, AND standard exceptions)
    - Make it practical and focused on fixing the identified issue
    - Use clear, plain language where possible
-   - Keep it concise but legally sound
+   - Be thorough - don't omit important protective provisions even for brevity
+   - Keep it legally sound and comprehensive
 7. Provide a confidence score (0.0 to 1.0) for your assessment
 
 Note: Acceptable variations are NOT issues - they're tolerable. Only red flags are issues.

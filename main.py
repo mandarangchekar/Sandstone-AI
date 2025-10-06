@@ -24,12 +24,10 @@ from sandstone.services.document_parser import DocumentParser
 from sandstone.services.playbook_loader import PlaybookLoader
 from sandstone.services.semantic_matcher import SemanticMatcher
 from sandstone.services.issue_analyzer import IssueAnalyzer
-from sandstone.services.evaluator import RedlineEvaluator
 from sandstone.config import (
     BAD_DOCUMENT_FILE,
     PLAYBOOK_FILE,
-    REDLINES_OUTPUT_FILE,
-    EXPECTED_OUTPUT_FILE
+    REDLINES_OUTPUT_FILE
 )
 
 console = Console()
@@ -58,11 +56,6 @@ def parse_arguments():
         type=Path,
         default=REDLINES_OUTPUT_FILE,
         help="Path to output JSON file"
-    )
-    parser.add_argument(
-        "--evaluate",
-        action="store_true",
-        help="Run evaluation against expected output"
     )
     parser.add_argument(
         "--verbose",
@@ -165,21 +158,9 @@ def main():
         console.print(table)
         console.print(f"\n[bold]Total Issues:[/bold] {len(redlines)}")
         
-        # Run Evaluation (if requested)
-        if args.evaluate:
-            console.print("\n" + "="*70)
-            console.print("[bold cyan]Running Evaluation...[/bold cyan]")
-            console.print("="*70)
-            
-            evaluator = RedlineEvaluator()
-            expected = evaluator.load_expected_output(EXPECTED_OUTPUT_FILE)
-            metrics = evaluator.evaluate(redlines, expected)
-            report = evaluator.generate_report(metrics, redlines, expected)
-            
-            console.print(report)
-        
         console.print(f"\n[bold green]✓ Success![/bold green]")
         console.print(f"Output: {args.output}")
+        console.print(f"\n[dim]To run evaluations, use: python run_pydantic_evals.py[/dim]")
         
         return 0
         
