@@ -1,4 +1,4 @@
-"""Test proper evaluation with ROUGE scores."""
+"""Test evaluation metrics for redlining system."""
 
 import json
 from rich.console import Console

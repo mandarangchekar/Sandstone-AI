@@ -52,7 +52,7 @@ class PlaybookLoader:
             convert_to_numpy=True
         )
         
-        # Build FAISS index
+        # Build FAISS index -- for scalable matching
         dimension = self.embeddings.shape[1]
         self.index = faiss.IndexFlatL2(dimension)
         self.index.add(self.embeddings.astype('float32'))
@@ -129,9 +129,4 @@ class PlaybookLoader:
             List of clause names
         """
         return list(self.clauses.keys())
-    
-    @property
-    def num_clauses(self) -> int:
-        """Number of clauses in playbook."""
-        return len(self.clause_list)
 

@@ -91,7 +91,7 @@ class IssueAnalyzer:
             if analysis and analysis.has_issue:
                 results.append((match, analysis))
                 if verbose:
-                    print(f"  ✗ Issue found: {analysis.issue_type}")
+                    print(f"  ✗ Red flag found")
             elif verbose:
                 print(f"  ✓ No issues")
         
@@ -106,22 +106,15 @@ class IssueAnalyzer:
         
         Args:
             match: Original clause match
-            analysis: Issue analysis from LLM
+            analysis: Issue analysis from LLM (includes generated suggested fix)
             
         Returns:
             RedlineIssue in expected output format
         """
-        # Use ideal clause as suggested fix (or fallback if ideal is too strict)
-        suggested_fix = match.playbook_clause.example_ideal_clause
-        
-        # If ideal clause is empty, use fallback
-        if not suggested_fix or suggested_fix.strip() == "":
-            suggested_fix = match.playbook_clause.example_fallback_clause
-        
         return RedlineIssue(
             text_snippet=analysis.problematic_snippet,
             playbook_clause_reference=match.playbook_clause.clause,
-            suggested_fix=suggested_fix
+            suggested_fix=analysis.suggested_fix
         )
     
     def analyze_and_generate_redlines(

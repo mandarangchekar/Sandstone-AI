@@ -122,8 +122,4 @@ class DocumentParser:
         
         return clauses
     
-    @property
-    def supported_formats(self) -> list[str]:
-        """List of supported file formats."""
-        return ['.rtf']
 

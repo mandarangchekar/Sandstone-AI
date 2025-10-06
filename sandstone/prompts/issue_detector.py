@@ -45,13 +45,24 @@ ACCEPTABLE VARIATIONS (Minor Concerns):
 {playbook_clause.acceptable}
 
 TASK:
-1. Determine if this clause has issues
-2. If issues exist, classify as: "red_flag" (major), "acceptable" (minor), or "ideal" (no issue)
-3. Extract the specific problematic text snippet (exact quote from document)
-4. Explain clearly what the issue is and why it matters
-5. Provide a confidence score (0.0 to 1.0) for your assessment
+1. Analyze the clause against the playbook criteria
+2. Determine if this clause has RED FLAGS (major issues that need fixing)
+3. Set has_issue=True ONLY if there are red flag issues
+4. If red flags exist, extract the specific problematic text snippet (exact quote)
+5. Explain clearly what the red flag is and why it matters
+6. Generate a concise, clear suggested fix that addresses the specific red flag found
+   - Base it on the ideal characteristics provided
+   - Make it practical and focused on fixing the identified issue
+   - Use clear, plain language where possible
+   - Keep it concise but legally sound
+7. Provide a confidence score (0.0 to 1.0) for your assessment
 
-Focus on substantive legal issues, not minor wording differences."""
+Note: Acceptable variations are NOT issues - they're tolerable. Only red flags are issues.
+
+EXAMPLE IDEAL CLAUSE (for reference):
+{playbook_clause.example_ideal_clause}
+
+Your suggested fix should address the specific issue found, drawing from the ideal characteristics and example above."""
 
 
 def create_batch_analysis_prompt(

@@ -17,11 +17,11 @@ class RedlineIssue(BaseModel):
 class IssueAnalysis(BaseModel):
     """Intermediate analysis result from LLM."""
     
-    has_issue: bool = Field(..., description="Whether an issue was found")
-    issue_type: str = Field(..., description="Type: red_flag, acceptable, or ideal")
+    has_issue: bool = Field(..., description="Whether a red flag was found")
     problematic_snippet: str = Field("", description="Specific problematic text")
-    reasoning: str = Field("", description="Explanation of the issue")
+    reasoning: str = Field("", description="Explanation of the red flag")
     confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence score")
+    suggested_fix: str = Field("", description="LLM-generated suggested fix for the issue")
 
 
 class ClauseMatch(BaseModel):

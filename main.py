@@ -112,7 +112,7 @@ def main():
             loader = PlaybookLoader()
             loader.load(args.playbook)
             progress.update(task, completed=True)
-            console.print(f"✓ Loaded playbook: {loader.num_clauses} clauses indexed")
+            console.print(f"✓ Loaded playbook: {len(loader.clause_list)} clauses indexed")
             
             # Step 3: Semantic Matching
             task = progress.add_task("[cyan]Matching clauses...", total=None)
